@@ -51,3 +51,11 @@ Ejecutar JS
 ```
 node dist/mongoogse.js
 ```
+
+Referències
+```
+Inteligència Artificial: Chat GPT + COPILOT
+https://mongoosejs.com/docs/populate.html
+https://www.w3schools.com/mongodb/mongodb_aggregations_intro.php
+
+```
