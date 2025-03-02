@@ -1,19 +1,21 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 
-// 1. Create an interface representing a TS object.
+// Definir la interfaz de Usuario
 export interface IUser {
   name: string;
   email: string;
   avatar?: string;
-  _id?: string;
+  projects?: mongoose.Types.ObjectId[]; // Proyectos referenciados
+  _id?: mongoose.Types.ObjectId;
 }
 
-// 2. Create a Schema corresponding to the document in MongoDB.
+// Esquema de Usuario con proyectos referenciados
 const userSchema = new Schema<IUser>({
+  _id: { type: mongoose.Types.ObjectId, default: () => new mongoose.Types.ObjectId() }, // Generar un nuevo ObjectId por defecto
   name: { type: String, required: true },
   email: { type: String, required: true },
-  avatar: String
+  avatar: String,
+  projects: [{ type: mongoose.Types.ObjectId, ref: 'Project' }] // Referencia al modelo Project
 });
 
-// 3. Create a Model.
 export const UserModel = model('User', userSchema);
